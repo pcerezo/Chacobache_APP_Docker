@@ -1,0 +1,49 @@
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "5000:5000"
+    links:
+      - sqlnet
+    volumes:
+      - .:/home/app
+  sqlnet:
+    image: mysql
+    ports: 
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=chacobache_dev
+      - MYSQL_USER=pablo
+      - MYSQL_PASSWORD=password
+    volumes:
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+  angular-chacobache:
+    build: C:\Users\pcere\OneDrive\Documentos\proyectos\Chacobache
+    ports:
+      - "4200:4200"
+      - "9876:9876"
+    links:
+      - backend
+    depends_on:
+      - backend
+    volumes:
+      - C:\Users\pcere\OneDrive\Documentos\proyectos\Chacobache:/usr/src/app
+    #command: >
+    #  sh -c "npm install && ng serve --host 0.0.0.0 --poll=2000"
+
+      
+      
+      
+  #angular-container:
+  #  image: angular-docker
+  #  ports:
+  #    - "4200:4200"
+  #  volumes:
+  #    - .:/
+
+#volumes:
+# mysql-data:
