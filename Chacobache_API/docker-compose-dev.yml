@@ -22,7 +22,7 @@ services:
     volumes:
       - ./sql-scripts:/docker-entrypoint-initdb.d
   angular-chacobache:
-    build: C:\Users\pcere\OneDrive\Documentos\proyectos\Chacobache
+    build: ../Chacobache
     ports:
       - "4200:4200"
       - "9876:9876"
@@ -31,7 +31,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - C:\Users\pcere\OneDrive\Documentos\proyectos\Chacobache:/usr/src/app
+      - ../Chacobache:/usr/src/app
     #command: >
     #  sh -c "npm install && ng serve --host 0.0.0.0 --poll=2000"
 
