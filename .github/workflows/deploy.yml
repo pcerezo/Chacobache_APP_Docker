@@ -13,30 +13,66 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
+    - name: Login to Github Container Registry
+      uses: docker/login-action@v1
       with:
-        node-version: '18'
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.CHACO_TOKEN }}
+    
+    - name: Build image and push
+      run: |
+        docker compose -f Chacobache_API/docker-compose-dev.yml build
+        docker compose -f Chacobache_API/docker-compose-dev.yml push
+    
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+     steps:
+      # 1. Clona el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Install dependencies for backend
-      working-directory: Chacobache_API
-      run: npm install
+      # 2. Loguéate en el GitHub Container Registry
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.CHACO_TOKEN }}
 
-    - name: Run backend tests
-      working-directory: Chacobache_API
-      run: npm test
+      # 3. Despliega el contenedor
+      - name: Deploy Docker container
+        run: |
+          docker pull ghcr.io/pcerezo/Chacobache_APP_Docker:latest
+          docker run -d -p 80:5000 --name chacobache_app ghcr.io/pcerezo/Chacobache_APP_Docker:latest
 
-    - name: Setup Chromium
-      uses: browser-actions/setup-chromium@v1
 
-    - name: Install dependencies for frontend
-      working-directory: Chacobache
-      run: npm install
+#    - name: Setup Node.js
+#      uses: actions/setup-node@v3
+#      with:
+#        node-version: '18'
 
-    - name: Run frontend tests
-      working-directory: Chacobache
-      run: npm test
+#    - name: Install dependencies for backend
+#      working-directory: Chacobache_API
+#      run: npm install
 
-    - name: Build and Deploy Frontend
-      working-directory: Chacobache
-      run: npm run build
+#    - name: Run backend tests
+#      working-directory: Chacobache_API
+#      run: npm test
+
+#    - name: Setup Chromium
+#      uses: browser-actions/setup-chromium@v1
+
+#    - name: Install dependencies for frontend
+#      working-directory: Chacobache
+#      run: npm install
+
+#    - name: Run frontend tests
+#      working-directory: Chacobache
+#      run: npm test
+
+#    - name: Build and Deploy Frontend
+#      working-directory: Chacobache
+#      run: npm run build
+
