@@ -26,6 +26,9 @@ jobs:
       working-directory: Chacobache_API
       run: npm test
 
+    - name: Setup Chromium
+      uses: browser-actions/setup-chromium@v1
+
     - name: Install dependencies for frontend
       working-directory: Chacobache
       run: npm install
