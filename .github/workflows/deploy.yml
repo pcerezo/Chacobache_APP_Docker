@@ -45,8 +45,8 @@ jobs:
       # 3. Despliega el contenedor
       - name: Deploy Docker container
         run: |
-          docker pull ghcr.io/pcerezo/Chacobache_APP_Docker:latest
-          docker run -d -p 80:5000 --name chacobache_app ghcr.io/pcerezo/Chacobache_APP_Docker:latest
+          docker pull ghcr.io/pcerezo/chacobache_app_docker:latest
+          docker run -d -p 80:5000 --name chacobache_app ghcr.io/pcerezo/chacobache_app_docker:latest
 
 
 #    - name: Setup Node.js
