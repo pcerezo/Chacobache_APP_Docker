@@ -10,6 +10,8 @@ services:
       - sqlnet
     volumes:
       - .:/home/app
+    depends_on:
+      - sqlnet
   sqlnet:
     image: mysql
     ports: 
@@ -32,6 +34,11 @@ services:
       - backend
     volumes:
       - ../Chacobache:/usr/src/app
+      - ../docs:/usr/src/app/docs
+    #command: >
+    #  sh -c "npm install &&
+    #         npm run build -- --output-path=/usr/src/app/docs --base-href / &&
+    #         npm start"
     #command: >
     #  sh -c "npm install && ng serve --host 0.0.0.0 --poll=2000"
 
