@@ -52,7 +52,6 @@ jobs:
       # 3. Despliega el contenedor
       - name: Deploy Docker container
         run: |
-          docker compose -f Chacobache_API/docker-compose-dev.yml pull
           docker compose -f Chacobache_API/docker-compose-dev.yml up -d
       
       - name: Move files to root
