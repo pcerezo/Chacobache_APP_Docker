@@ -57,7 +57,9 @@ jobs:
       
       - name: Move files to root
         run: |
-          if [[ -d "docs/browser" ]]; then mv docs/browser/* docs/ fi
+          if [[ -d "docs/browser" ]]; 
+            then mv docs/browser/* docs/ 
+          fi
           rm -rf docs/browser
 
       - name: Deploy to GitHub Pages
