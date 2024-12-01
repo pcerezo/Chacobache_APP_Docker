@@ -47,13 +47,18 @@ jobs:
         run: |
           cd Chacobache
           npm install
-          npm run build -- --output-path=../docs --base-href /chacobache_app_docker/
+          npm run build -- --output-path=docs --base-href /chacobache_app_docker/
 
       # 3. Despliega el contenedor
       - name: Deploy Docker container
         run: |
           docker compose -f Chacobache_API/docker-compose-dev.yml pull
           docker compose -f Chacobache_API/docker-compose-dev.yml up -d
+      
+      - name: Move files to root
+        run: |
+          mv docs/browser/* docs/
+          rm -rf docs/browser
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
