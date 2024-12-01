@@ -3,7 +3,7 @@ name: CI/CD for Fullstack App
 on:
   push:
     branches:
-      - gh-pages
+      - main
 
 jobs:
   test:
@@ -63,6 +63,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.CHACO_TOKEN }}
+          publish_branch: gh-pages
           publish_dir: ./docs
 
 #    - name: Setup Node.js
