@@ -1,0 +1,22 @@
+/*.footer {
+    height: 50px;
+}*/
+
+.footer {
+  margin-top: auto;    /* Empuja el footer hacia el final de content-wrapper */
+  padding: 20px;
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+}
+
+/*
+.footer-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: url('/assets/header/chacobache_profile.jpg') no-repeat center center;
+    background-size: cover;
+    margin-left: 50px;
+}
+*/

@@ -1,0 +1,37 @@
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "5000:5000"
+    links:
+      - sqlnet
+    volumes:
+      - .:/home/app
+    depends_on:
+      - sqlnet
+  sqlnet:
+    image: mysql
+    ports: 
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=chacobache_dev
+      - MYSQL_USER=pablo
+      - MYSQL_PASSWORD=password
+    volumes:
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+  angular-chacobache:
+    build: ../Chacobache
+    ports:
+      - "4200:4200"
+      - "9876:9876"
+    links:
+      - backend
+    depends_on:
+      - backend
+    volumes:
+      - ../Chacobache:/usr/src/app
+      - ../docs:/usr/src/app/docs
