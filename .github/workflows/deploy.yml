@@ -42,12 +42,24 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.CHACO_TOKEN }}
 
+      # 3. Ejecutar el build del frontend Angular
+      - name: Build Angular App
+        run: |
+          cd Chacobache
+          npm install
+          npm run build -- --output-path=../docs --base-href /chacobache_app_docker/
+
       # 3. Despliega el contenedor
       - name: Deploy Docker container
         run: |
           docker compose -f Chacobache_API/docker-compose-dev.yml pull
           docker compose -f Chacobache_API/docker-compose-dev.yml up -d
 
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.CHACO_TOKEN }}
+          publish_dir: ./docs
 
 #    - name: Setup Node.js
 #      uses: actions/setup-node@v3
