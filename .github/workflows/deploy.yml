@@ -63,14 +63,14 @@ jobs:
 
       # 4. Crear el archivo .nojekyll
       - name: Add .nojekyll file
-        run: echo > ./docs/.nojekyll
+        run: echo > docs/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.CHACO_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./docs
+          publish_dir: docs
 
 #    - name: Setup Node.js
 #      uses: actions/setup-node@v3
