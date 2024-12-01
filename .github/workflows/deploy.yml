@@ -63,7 +63,7 @@ jobs:
 
       # 4. Crear el archivo .nojekyll
       - name: Add .nojekyll file
-        run: echo > .nojekyll
+        run: echo > docs/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
