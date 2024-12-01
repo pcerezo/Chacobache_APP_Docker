@@ -48,7 +48,7 @@ jobs:
           cd Chacobache
           npm install
           npm run build -- --output-path=docs --base-href /chacobache_app_docker/
-          touch docs/.nojekyll
+          touch ../docs/.nojekyll
 
       # 3. Despliega el contenedor
       - name: Deploy Docker container
