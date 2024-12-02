@@ -34,4 +34,5 @@ services:
       - backend
     volumes:
       - ../Chacobache:/usr/src/app
-      - ../docs:/usr/src/app/docs
+      #- ../Chacobache/docs:/usr/src/app/docs
+      #- ../docs:/usr/src/app/docs
