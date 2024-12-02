@@ -47,7 +47,7 @@ jobs:
         run: |
           cd Chacobache
           npm install
-          npm run build --base-href /chacobache_app_docker/ --output-path=docs
+          npm run build
 
       # 3. Despliega el contenedor
       - name: Deploy Docker container
