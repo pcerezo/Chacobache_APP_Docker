@@ -14,6 +14,14 @@ app.use('/api/', eventRoutes);
 // TODO: Servir los PDFs subidos desde el directorio "uploads"
 app.use('/uploads', express.static('uploads'));
 
+// Evitar CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://pcerezo.github.io");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 // Sincronizar modelos con la base de datos
 sequelize.sync({ force: false })  // Usar `force: true` para borrar y recrear tablas cada vez
   .then(() => {
