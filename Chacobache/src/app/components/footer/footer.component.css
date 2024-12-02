@@ -15,7 +15,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: url('/chacobache_api_docker/assets/header/chacobache_profile.jpg') no-repeat center center;
+    background: url('/chacobache_app_docker/assets/header/chacobache_profile.jpg') no-repeat center center;
     background-size: cover;
     margin-left: 50px;
 }
