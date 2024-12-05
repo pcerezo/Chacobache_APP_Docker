@@ -9,7 +9,7 @@ import { BACKEND } from '../app.config';
 })
 export class BlogNoticiasService {
 
-  private apiUrl = BACKEND + "/api/blog/";
+  private apiUrl = "https://backend:5000/api/blog/";
 
   constructor(private http: HttpClient) { }
 
