@@ -30,13 +30,13 @@ jobs:
             MYSQL_USER: ${{ secrets.MYSQL_USER }}
             MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       run: |
-          echo "EMAIL_USER=${EMAIL_USER}" >> .env
-          echo "EMAIL_CODE=${EMAIL_CODE}" >> .env
-          echo "EMAIL_DESTINO=${EMAIL_DESTINO}" >> .env
-          echo "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" >> .env
-          echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> .env
-          echo "MYSQL_USER=${MYSQL_USER}" >> .env
-          echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}" >> .env
+          echo "EMAIL_USER=${EMAIL_USER}" >> Chacobache_API/Chacobache_API/.env
+          echo "EMAIL_CODE=${EMAIL_CODE}" >> Chacobache_API/.env
+          echo "EMAIL_DESTINO=${EMAIL_DESTINO}" >> Chacobache_API/.env
+          echo "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" >> Chacobache_API/.env
+          echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> Chacobache_API/.env
+          echo "MYSQL_USER=${MYSQL_USER}" >> Chacobache_API/.env
+          echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}" >> Chacobache_API/.env
     
     - name: Build image and push
       run: |
@@ -80,7 +80,7 @@ jobs:
               then mv ./docs/browser/* ./docs/ 
             fi
             rm -rf ./docs/browser
-            
+
       # 4. Crear el archivo .nojekyll
       - name: Add .nojekyll file
         run: echo > docs/.nojekyll
