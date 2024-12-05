@@ -63,13 +63,13 @@ jobs:
           password: ${{ secrets.CHACO_TOKEN_2 }}
 
       # 3. Ejecutar el build del frontend Angular
-      #- name: Build Angular App
-      #  run: |
-      #    cd Chacobache
-      #    npm install
-      #    npm run build
+      - name: Build Angular App
+        run: |
+          cd Chacobache
+          npm install
+          npm run build
 
-      # 3. Despliega el contenedor
+      # 4. Despliega el contenedor
       - name: Deploy Docker container
         run: |
           docker compose -f Chacobache_API/docker-compose-dev.yml up -d
@@ -81,7 +81,7 @@ jobs:
             fi
             rm -rf ./docs/browser
 
-      # 4. Crear el archivo .nojekyll
+      # 5. Crear el archivo .nojekyll
       - name: Add .nojekyll file
         run: echo > docs/.nojekyll
 
