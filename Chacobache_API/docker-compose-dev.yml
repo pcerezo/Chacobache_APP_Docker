@@ -4,8 +4,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    image: ghcr.io/pcerezo/chacobache_app_docker/backend:latest
     ports: 
       - "5000:5000"
+    environment:
+      - DB_HOST=sqlnet
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_DATABASE=${MYSQL_DATABASE}
+      - EMAIL_CODE=${EMAIL_CODE}
+      - EMAIL_DESTINO=${EMAIL_DESTINO}
+      - EMAIL_USER=${EMAIL_USER}
     links:
       - sqlnet
     volumes:
@@ -13,18 +22,19 @@ services:
     depends_on:
       - sqlnet
   sqlnet:
-    image: mysql
+    image: mysql:latest
     ports: 
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=chacobache_dev
-      - MYSQL_USER=pablo
-      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - ./sql-scripts:/docker-entrypoint-initdb.d
   angular-chacobache:
     build: ../Chacobache
+    image: ghcr.io/pcerezo/chacobache_app_docker/angular-chacobache:latest
     ports:
       - "4200:4200"
       - "9876:9876"
