@@ -9,4 +9,4 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), provideHttpClient(withFetch())]
 };
-export const BACKEND: String = "backend";
+export const BACKEND: String = "https://backend:5000";
