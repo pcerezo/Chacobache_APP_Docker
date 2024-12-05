@@ -30,7 +30,7 @@ jobs:
             MYSQL_USER: ${{ secrets.MYSQL_USER }}
             MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       run: |
-          echo "EMAIL_USER=${EMAIL_USER}" >> Chacobache_API/Chacobache_API/.env
+          echo "EMAIL_USER=${EMAIL_USER}" >> Chacobache_API/.env
           echo "EMAIL_CODE=${EMAIL_CODE}" >> Chacobache_API/.env
           echo "EMAIL_DESTINO=${EMAIL_DESTINO}" >> Chacobache_API/.env
           echo "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" >> Chacobache_API/.env
