@@ -8,7 +8,7 @@ import { BACKEND } from '../app.config';
 })
 export class ContactoService {
 
-  private apiUrl = "https://backend:5000/api/contacto/";
+  private apiUrl = BACKEND + "/api/contacto/";
 
   constructor(private http: HttpClient) { }
 

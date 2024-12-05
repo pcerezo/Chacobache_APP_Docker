@@ -21,6 +21,8 @@ services:
       - .:/home/app
     depends_on:
       - sqlnet
+    networks:
+      - app-network
   sqlnet:
     image: mysql:latest
     ports: 
@@ -32,6 +34,8 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - ./sql-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
   angular-chacobache:
     build: ../Chacobache
     image: ghcr.io/pcerezo/chacobache_app_docker/angular-chacobache:latest
@@ -44,5 +48,11 @@ services:
       - backend
     volumes:
       - ../Chacobache:/usr/src/app
+    networks:
+      - app-network
       #- ../Chacobache/docs:/usr/src/app/docs
       #- ../docs:/usr/src/app/docs
+
+networks:
+  app-network:
+    driver: bridge
