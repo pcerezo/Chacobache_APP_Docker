@@ -22,7 +22,7 @@ services:
     depends_on:
       - sqlnet
   sqlnet:
-    image: sqlnet:latest
+    image: mysql:latest
     ports: 
       - "3306:3306"
     environment:
