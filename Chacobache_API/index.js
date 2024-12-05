@@ -5,6 +5,11 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
+/*
+app.use(cors({
+  origin: 'https://pcerezo.github.io', // Tu frontend en GitHub Pages
+}));
+*/
 app.use(express.json());
 
 // Rutas de eventos
